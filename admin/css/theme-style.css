@@ -1,0 +1,8 @@
+body { width: 800px;  }
+#mainwrapper { width: 780px; }
+#sidebar { width: 180px; }
+#sidebar .side-widget { width: 160px; }
+#secondsidebar { width: 180px; }
+#secondsidebar .side-widget { width: 160px; }
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 352px; }
+#leftcontent img { max-width: 352px; height: auto; }
