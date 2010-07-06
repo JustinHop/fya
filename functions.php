@@ -50,8 +50,8 @@ function partner_filter($query) {
 function fya_startup() {
     add_theme_support('post-thumbnails');
     add_theme_support('nav-menus');
-    set_post_thumbnail_size(100, 100, true); // Normal post thumbnails
-    add_image_size('single-post-thumbnail', 200, 200); // Permalink thumbnai
+    set_post_thumbnail_size(80, 80, true); // Normal post thumbnails
+    add_image_size('single-post-thumbnail', 150, 150); // Permalink thumbnai
     
 }
 add_action('init', 'fya_startup');
@@ -471,7 +471,11 @@ function pbt_layout_options() {
 		switch ( get_index($value,'type') ) {
 	
 			case "site":
-				radioBox(2, $value['name'], $value['desc'], $value['id'], array( __('800px', "magazine-basic"), __('1024px', "magazine-basic")), array(800,1024));			
+				radioBox(3, $value['name'], $value['desc'], $value['id'], 
+				    array( 
+				        __('800px', "magazine-basic"), 
+				        __('960px', "magazine-basic"), 
+				        __('1024px', "magazine-basic")), array(800,960,1024));			
 			break;
 				
 			case "dates":
@@ -1140,4 +1144,15 @@ if(!function_exists('pbt_AddThumbColumn') && function_exists('add_theme_support'
 	add_filter( 'manage_pages_columns', 'pbt_AddThumbColumn' );
 	add_action( 'manage_pages_custom_column', 'pbt_AddThumbValue', 10, 2 );
 }
+
+
+function fixfullpath ($head) {
+	return preg_replace('/www\/wordpress-3.0\//','',$head);
+}
+
+//wp_register_style('easy-style', '/wp-content/plugins/easy-post-types/style.css');
+//wp_enqueue_style('easy-style');
+
+//add_filter('admin_head','fixfullpath');
+
 ?>

@@ -360,3 +360,11 @@ height:160px;
 padding:12px;
 width:250px;
 			}
+
+#menusplus_list .mp_list_Home {
+    background-color: gray;
+}
+
+#setcustommeta .label {
+    width: 20%;
+}

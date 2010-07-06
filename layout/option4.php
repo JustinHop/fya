@@ -1,3 +1,4 @@
+<!-- Option Four -->
 <?php while (have_posts()) : the_post(); ?>
 <?php if($x == 1) { ?>
 <div class="ind-post">

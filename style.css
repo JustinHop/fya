@@ -414,7 +414,7 @@ li.sfHover > a > .sf-sub-indicator {
 		margin-top: 0;
 		text-align: center;
 		text-transform: uppercase;
-		background: url(images/h2line.gif) repeat-x bottom;
+		/*background: url(images/h2line.gif) repeat-x bottom;*/
 		}
 		
 	.side-widget .storycontent {
@@ -469,10 +469,15 @@ li.sfHover > a > .sf-sub-indicator {
 	}
 
 /* Left Content Elements */
+    /*
+     * this sets the contents width 
+     */
+
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 720px; }
 
 #leftcontent {
 	float: left;
-	margin: 0 10px;
+	margin: 0 0 0 10px;
 	padding: 0;
 	}
 
@@ -878,3 +883,18 @@ div.aligncenter {
 #wp-calendar {
 	margin: auto;
 	}
+
+.width100 {
+    width: 100%;
+}
+
+.height80 {
+    height: 80px;
+}
+
+.clearboth {
+    clear: both;
+}
+#setcustommeta .label {
+    width: 20%;
+}

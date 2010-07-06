@@ -27,7 +27,8 @@ body { width: <?php echo $site; ?>px; <?php //echo 'background: url('.get_blogin
 #sidebar .side-widget { width: <?php echo $sidewidget; ?>px; }
 #secondsidebar { width: <?php echo $secondsidebar; ?>px; }
 #secondsidebar .side-widget { width: <?php echo $sidewidget2; ?>px; }
-#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: <?php echo $content; ?>px; }
+/*#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: <?php echo $content; ?>px; }
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 550px; }*/
 #leftcontent img { max-width: <?php echo $content; ?>px; height: auto; }
 <?php
 $page = ob_get_contents();

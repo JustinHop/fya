@@ -1,8 +1,9 @@
-body { width: 800px;  }
-#mainwrapper { width: 780px; }
+body { width: 960px;  }
+#mainwrapper { width: 940px; }
 #sidebar { width: 180px; }
 #sidebar .side-widget { width: 160px; }
-#secondsidebar { width: 180px; }
-#secondsidebar .side-widget { width: 160px; }
-#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 352px; }
-#leftcontent img { max-width: 352px; height: auto; }
+#secondsidebar { width: 0px; }
+#secondsidebar .side-widget { width: -20px; }
+/*#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 715px; }
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 550px; }*/
+#leftcontent img { max-width: 715px; height: auto; }

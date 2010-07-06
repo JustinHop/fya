@@ -1,3 +1,4 @@
+<!-- Option One -->
 <?php while (have_posts()) : the_post(); ?>
 <div class="ind-post">
 	<h1><a href="<?php the_permalink() ?>" title="<?php printf(__("Permanent Link to %s", "magazine-basic"), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h1>
