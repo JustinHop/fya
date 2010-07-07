@@ -352,7 +352,13 @@ class NewsMenu extends MenusPlus {
 					</tr>
 					<tr>
 						<td><div align="right"><?php _e("Class"); ?></div></td>
-						<td><input class="add_class widefat" value="" /></td>
+						<td>
+							<select class="add_class">
+								<option value="full" selected="selected"><?php _e('Full Post'); ?></option>
+								<option value="excerpt"><?php _e('Post Excerpt'); ?></option>
+								<option value="title"><?php _e('Post Title Only'); ?></option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td><div align="right"><?php _e("Attribute Title", "menusplus"); ?></div></td>
@@ -643,7 +649,16 @@ class NewsMenu extends MenusPlus {
 					</tr>
 					<tr>
 						<td><div align="right"><?php _e("Class", "menus-plus"); ?></div></td>
-						<td><input class="edit_class widefat" value="<?php echo $class; ?>" /></td>
+						<td>
+							<select class="edit_class">
+								<option value="full" <?php if ($target == "full"): ?> selected="selected" <?php
+            endif; ?> ><?php _e('Full Post', "menus-plus"); ?></option>
+								<option value="excerpt" <?php if ($target == "excerpt"): ?> selected="selected" <?php
+            endif; ?> ><?php _e('Post Excerpt', "menus-plus"); ?></option>
+								<option value="title" <?php if ($target == "title"): ?> selected="selected" <?php
+            endif; ?> ><?php _e('Post Title Only', "menus-plus"); ?></option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td><div align="right"><?php _e("Attribute Title", "menusplus"); ?></div></td>
