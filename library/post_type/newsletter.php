@@ -62,6 +62,7 @@ function newsletter_admin_footer() {
 jQuery(document).ready(function($) {
    $('#datepicker').datepicker();
    $('#title').datepicker({dateFormat: 'MM d, yy'});
+   $('#title-prompt-text').hide();
 
     	
     	$('.post_ID').text($('input[name=post_ID]').attr('value'));
@@ -73,11 +74,36 @@ jQuery(document).ready(function($) {
 function newsletter_admin_header_new() {
     global $post;
     global $newsmenu;
+    global $wpdb;
+    $items_table = $wpdb->prefix . "menusplus";
+    $menus_table = $wpdb->prefix . "menusplus_menus";
     if (get_post_type() == 'newsletter') {
         echo '<!-- THIS IS newsletter_admin_header_new() -->';
         echo '<!-- ' . $post->ID . ' -->';
-        $quick = update_post_meta($post->ID, 'menu_id', $newsmenu->quick_new_menu());
-        $newsmenu->quick_preload_menu( array( 'menu_id' => $quick, 'wp_id' => $post->ID ) );
+        $quick = $newsmenu->quick_new_menu();
+        update_post_meta($post->ID, 'menu_id', $quick );
+        
+        $wpdb->query( $wpdb->prepare( "
+            INSERT INTO $items_table
+            ( wp_id, list_order, type, label, menu_id, target )
+            VALUES ( %d, %d, %s, %s, %d, %s )
+            ",
+            array( $post->ID, 1, 'section', 'Featured', $quick, 'main' ) ) );
+
+        $wpdb->query( $wpdb->prepare( "
+            INSERT INTO $items_table
+            ( wp_id, list_order, type, label, menu_id, target )
+            VALUES ( %d, %d, %s, %s, %d, %s )
+            ",
+            array( $post->ID, 2, 'section', 'Other News', $quick, 'mainshort' ) ) );
+
+        $wpdb->query( $wpdb->prepare( "
+            INSERT INTO $items_table
+            ( wp_id, list_order, type, label, menu_id, target )
+            VALUES ( %d, %d, %s, %s, %d, %s )
+            ",
+            array( $post->ID, 3, 'section', 'Quick Updates', $quick, 'side' ) ) );
+        //$newsmenu->quick_preload_menu( array( 'menu_id' => $quick, 'wp_id' => $post->ID ) );
     }
 }
 function newsletter_save_postdata($post_id) {
