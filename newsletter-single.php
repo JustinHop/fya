@@ -9,7 +9,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <title>Template 4 - Right Sidebar</title>
+   <title>FYA Bulletin - <?php the_title(); ?></title>
    <style type="text/css" media="screen">
       body {
       	background-color: #474333;
@@ -252,13 +252,15 @@
             </tr>
          </table>
          
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
          <table width="579" border="0" cellspacing="0" cellpadding="0" class="bgTop">
             <tr>
                <td align="center">
                   
                   <table width="579" height="108" border="0" cellspacing="0" cellpadding="0" class="header">
                      <tr>
-                        <td><img src="header.gif" width="579" height="108" alt="ABC Widgets" /></td>
+                        <td><img src="<?php bloginfo('template_directory'); ?>/images/header.gif" width="579" height="108" alt="ABC Widgets" /></td>
                      </tr>
                   </table>
                   
@@ -273,13 +275,14 @@
                      <tr>
                         <td align="left" class="mainbar">
                            
+                           <?php if ( false ) : ?>
                            <h3>Feature</h3>
                            
                            <h2>Lorem ipsum dolor sit amet conse ct etuer adipiscing elit.</h2>
-                           <p><img src="main-content-inline-small-1.jpg" width="160" height="151" align="right" hspace="10"> Donec imperdiet, nibh sit amet pharetra placerat, tortor purus condimentum lectus, at dignissim nibh velit vitae sem. Nunc <a href="#">condimen-tum blandit</a> tortorphasellus facilisis neque vitae purus. Aliquam facilisis nisl in nisi. Ut ultricies massa eget est. Donec eget orci eget urna aliquam egestas. Nulla vitae felis. <a href="#">Maecenas bibendum</a>, nunc eu aliquet ultricies, <a href="#">Read More</a>.</p>
+                           <p><img src="<?php bloginfo('template_directory'); ?>/images/main-content-inline-small-1.jpg" width="160" height="151" align="right" hspace="10"> Donec imperdiet, nibh sit amet pharetra placerat, tortor purus condimentum lectus, at dignissim nibh velit vitae sem. Nunc <a href="#">condimen-tum blandit</a> tortorphasellus facilisis neque vitae purus. Aliquam facilisis nisl in nisi. Ut ultricies massa eget est. Donec eget orci eget urna aliquam egestas. Nulla vitae felis. <a href="#">Maecenas bibendum</a>, nunc eu aliquet ultricies, <a href="#">Read More</a>.</p>
                            
                            <p class="top"><a href="#top">Back to top</a></p>
-                           <img src="hr.gif" width="326" height="19">
+                           <img src="<?php bloginfo('template_directory'); ?>/images/hr.gif" width="326" height="19">
                            
                            <h3>Fashion</h3>
                            
@@ -293,19 +296,28 @@
                            <p>Aliquam facilisis nisl in nisi. Ut ultricies massa eget est. Donec eget orci eget urna aliquam egestas. <a href="#">Read More</a></p>
                            
                            <p class="top"><a href="#top">Back to top</a></p>
-                           <img src="hr.gif" width="326" height="19">
+                           <img src="<?php bloginfo('template_directory'); ?>/images/hr.gif" width="326" height="19">
                            
                            <h3>Culture</h3>
                            
                            <h2>Fermentum quam—donec imperde lorem ipsum dolar</h2>
-                           <p><img src="main-content-inline-small-2.jpg" width="160" height="151" align="right" hspace="10">Cras purus. Nunc rhoncus. Pellentesque semper. Donec imperdiet accumsan felis. Proin eget mi. Sed at est. Nunc a purus eu sapien laci-nia fermentum. Donec iaculis Sed at est. <a href="#">Nunc a purus eu sapien-lacinia fermentum</a>. Donec iaculis fermentum quam. Donec imperdiet, nibh sit amet pharetra placerat, tortor purus condimentum lectus. <a href="#">Read More</a></p>
+                           <p><img src="<?php bloginfo('template_directory'); ?>/images/main-content-inline-small-2.jpg" width="160" height="151" align="right" hspace="10">Cras purus. Nunc rhoncus. Pellentesque semper. Donec imperdiet accumsan felis. Proin eget mi. Sed at est. Nunc a purus eu sapien laci-nia fermentum. Donec iaculis Sed at est. <a href="#">Nunc a purus eu sapien-lacinia fermentum</a>. Donec iaculis fermentum quam. Donec imperdiet, nibh sit amet pharetra placerat, tortor purus condimentum lectus. <a href="#">Read More</a></p>
                            
                            <h2>Pharetra Placerat</h2>
                            <p>Donec eget orci eget urna aliquam egestas. Nulla vitae felis. <a href="#">Maecenas bibendum</a>, nunc eu aliquet ultricies, massa massa aliquet est, nec dignissim nisl ante eget lectus. <a href="#">Read More</a></p>
                            
+                           <?php else: ?>
+                            <?php 
+                                $menu_id = get_post_meta(get_the_ID(), 'menu_id', true); 
+                                if ( $menu_id ) {
+                                    newsletter_parts($menu_id, 'main');
+                                }
+                            ?>
+                            <?php endif; ?>
+
                            <p class="top"><a href="#top">Back to top</a></p>
-                           <img src="hr.gif" width="326" height="19">
-                           
+                           <img src="<?php bloginfo('template_directory'); ?>/images/hr.gif" width="326" height="19">
+
                         </td>
                      </tr>
                   </table>
@@ -320,19 +332,35 @@
                            <?php // TABLE OF CONTENTS LOOP ?>
                            <h2>In this issue</h2>
                            <ul>
+                           <?php if (false) : ?>
                               <li><a href="#">Lorem ipsum dolar sit amet conse</a></li>
                               <li><a href="#">Aliquam lectus orci, adip?</a></li>
                               <li><a href="#">Fermentum quam—donec imperde lorem ipsum</a></li>
+                              <?php else : ?>
+                            <?php
+                                if ( $menu_id ) {
+                                    newsletter_parts($menu_id, 'toc');
+                                }
+                            ?>
+                            <?php endif; ?>
                            </ul>
                            
                            <?php // SIDE NOTES BAR ?>
+                           <?php if (false) : ?>
                            <h2>In short</h2>
                            <p><strong>Lorem ipsum dolor sit</strong> consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id <a href="#">pulvinar odio</a> lorem non turpis. Nullam sit amet enim.</p>
                            
                            <p><strong>Aliquam facilisis misl in</strong> pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. <a href="#">Aliquam erat volutpat</a>. fermentum bibendum enim nibh blandit sed, blandit a, eros.</p>
                            
                            <p><strong>Sed quis velit.</strong> Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci.</p>
-                           
+                           <?php else: ?>
+
+                            <?php
+                                if ( $menu_id ) {
+                                    newsletter_parts($menu_id, 'side');
+                                }
+                            ?>
+                           <?php endif; ?>
                            <table width="100%" height="173" border="0" cellspacing="0" cellpadding="0" class="options">
                               <tr>
                                  <td align="center" class="border" valign="top">
@@ -355,6 +383,10 @@
                </td>
             </tr>
          </table>
+
+	<?php endwhile; else: ?>
+		<p><?php _e("Sorry, no posts matched your criteria.", "magazine-basic"); ?></p>
+<?php endif; ?>
          
          <table width="579" height="108" border="0" cellspacing="0" cellpadding="0" class="bgBottom">
             <tr>

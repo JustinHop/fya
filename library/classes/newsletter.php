@@ -403,7 +403,6 @@ class NewsMenu extends MenusPlus {
 						<td >
 							<select class="edit_target widefat">
 								<option value="main"  selected="selected" ><?php _e('Main Body Full', "menus-plus"); ?></option>
-								<option value="mainshort" ><?php _e('Main Body Short', "menus-plus"); ?></option>
 								<option value="side" ><?php _e('Side Column', "menus-plus"); ?></option>
 							</select>
 						</td>
@@ -500,8 +499,6 @@ class NewsMenu extends MenusPlus {
 							<select class="edit_target">
 								<option value="main"  <?php 
 								if ($target == "main"): ?> selected="selected" <?php endif; ?> ><?php _e('Main Body Full', "menus-plus"); ?></option>
-								<option value="mainshort" <?php 
-								if ($target == "mainshort"): ?> selected="selected" <?php endif; ?>  ><?php _e('Main Body Short', "menus-plus"); ?></option>
 								<option value="side" <?php 
 								if ($target == "side"): ?> selected="selected" <?php endif; ?> ><?php _e('Side Column', "menus-plus"); ?></option>
 							</select>
@@ -1486,8 +1483,7 @@ function newsinit() {
 }
 add_action('init', 'newsinit');
 
-/*
-function newletter_parts($passed_menu_id = null, $passed_class = null) {
+function newsletter_parts($passed_menu_id = null, $passed_target = 'main') {
 
 	global $wpdb;
 	$items_table = $wpdb->prefix . "menusplus";
@@ -1505,8 +1501,36 @@ function newletter_parts($passed_menu_id = null, $passed_class = null) {
 	endif;
 	
 	$items = $wpdb->get_results("SELECT * FROM $items_table WHERE menu_id = $menu_id ORDER BY list_order ASC", ARRAY_A);
-	$last_class = 'main';
-	
+	$last_target = '';
+
+	/*
+	if ( preg_match('/^toc$/', $passed_target) ) :
+	    if (count($items) > 0) :
+		    foreach ($items as $item) :
+
+			    $id = $item['id'];
+			    $wp_id = $item['wp_id'];
+			    $list_order = $item['list_order'];
+			    $type = $item['type'];
+
+			    $class = $item['class'];
+			    $url = $item['url'];
+			    $label = $item['label'];
+			    $children = $item['children'];
+			    $children_order = $item['children_order'];
+			    $children_order_dir = $item['children_order_dir'];
+			    $depth = $item['depth'];
+
+                global $wpdb;
+
+                $postdata = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE ID=$wp_id");
+                    
+                echo '<li><a href="#' . $id; . '">' .  $postdata->post_title . '</a></li>';
+
+            endforeach;
+        endif;
+    else:*/
+
 	if (count($items) > 0) :
 		foreach ($items as $item) :
 
@@ -1515,31 +1539,35 @@ function newletter_parts($passed_menu_id = null, $passed_class = null) {
 			$list_order = $item['list_order'];
 			$type = $item['type'];
 
-			$class = $item['class'];
-            if ( empty( $item['class'] ) {
-            	$class = $last_class;
+			$target = $item['target'];
+            if ( preg_match('/main|side|toc/', $target ) ) {
+            	$last_target = $target;
             }else{
-            	$last_class = $class;
+            	$target = $last_target;
             }
+			$class = $item['class'];
 			$url = $item['url'];
 			$label = $item['label'];
 			$children = $item['children'];
 			$children_order = $item['children_order'];
 			$children_order_dir = $item['children_order_dir'];
-			$target = $item['target'];
 			$depth = $item['depth'];
 			$title = $item['title'];
 			
 			$siteurl = get_bloginfo('siteurl');
 			
-	        if ( is_string($passed_class) ) {
-	        	if ( $passed_class == $class ) {
-	        		next;
-	        	};
-	        }
+	        if ( $passed_target ) :
+	        	if ( ( preg_match("/$passed_target/", $target ) ) || 
+	        		(
+	        		    ( ( preg_match('/toc/', $passed_target) ) &&
+	        		    ( ! preg_match('/section/', $type ) ) )
+	        		    
+	        		    ) ) :
+
 			if ($type == "section") :
 			
 			if ( $target == "side" ) {
+				//echo "\n<h2>$label - $target - $id</h2>\n";
 				echo "\n<h2>$label</h2>\n";
 			}   else{
 				echo "\n<h3>$label</h3>\n";
@@ -1587,15 +1615,24 @@ function newletter_parts($passed_menu_id = null, $passed_class = null) {
 				$wpdb->show_errors();
 
 				//$posts = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE ID = '$wp_id'", ARRAY_A );
-				$post = get_post( $wp_id );
+				$my_posts = array();
+				$my_posts[] = get_post($wp_id);
+                $count=0;
 
-				if ($post) :
-						echo '<h2 class="' . $class . '">';
-						echo '<a href="' . get_permalink($wp_id) . '" title="' . $title . '">' . $post['post_title'] . '</a>'; 
+                foreach( $my_posts as $post ) :
+                    setup_postdata($post);
+                    if ( preg_match('/toc/', $passed_target ) ) : ?>
+                    	<li><a href="#<?php echo $id; ?>"><?php the_title() ?></a></li>
+                    <?php else:
+						echo '<h2 class="' . $class . '"><a name="' . $id . '"></a>';
+						//echo '<a href="' . get_permalink() . '" title="' . $title . '">' . $target . ' - ' . $id . ' - ' . get_the_title() . '</a>'; 
+						echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a>'; 
 						echo '</h2>';
-						echo apply_filters('the_content', $post['content']);
-				endif;
-							
+						the_post_thumbnail( array( 160, 151 ), 'align=right');
+						the_content();
+						endif;
+					endforeach;
+						
 			endif;
 			
 			if ($type == "cat") :
@@ -1649,10 +1686,11 @@ function newletter_parts($passed_menu_id = null, $passed_class = null) {
 				echo "</ul></li>";
 			
 			endif;
+
+			endif;endif;
 			
 		endforeach;
     endif;
 
 }
-*/
 ?>
