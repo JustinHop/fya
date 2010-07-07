@@ -1,0 +1,345 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Template 4 - Right Sidebar</title>
+   <style type="text/css" media="screen">
+      body {
+      	background-color: #474333;
+      	margin: 0;
+      	padding: 0;
+      }
+
+      p a {
+      	color: #44a0df;
+      	text-decoration: none;
+      }
+
+      td.permission {
+      	padding: 8px 0 8px 0;
+      }
+
+      td.date {
+      	padding: 0 0 4px 0;
+      }
+
+      td.permission p {
+      	font-family: Georgia;
+      	font-size: 11px;
+      	font-weight: normal;
+      	font-style: italic;
+      	color: #151515;
+      	text-align: center;
+      }
+
+      td.permission a {
+      	color: #9f9862;
+      	text-decoration: none;
+      }
+
+      table.bgTop {
+      	background-color: #181818;
+      }
+
+      table.bg {
+      	background-color: #ffffff;
+      }
+
+      table.header td {
+      	height: 108px;
+      }
+
+      table.header td h1 {
+      	font-family: 'Futura', Arial;
+      	font-size: 24px;
+      	font-weight: normal;
+      	color: #9f9862;
+      	display: inline;
+      	margin: 0 0 0 6px;
+      	padding: 0;
+      	text-transform: uppercase;
+      }
+
+      table.header td h3 {
+      	font-family: Georgia, Arial;
+      	font-size: 12px;
+      	font-weight: normal;
+      	font-style: italic;
+      	color: #ffffff;
+      	display: inline;
+      	margin: 0;
+      	padding: 0 0 6px 0;
+      }
+
+      td.sidebar {
+      	background-color: #f8f8f8;
+      	border-right: 1px solid #bdbcb8;
+      }
+
+      td.sidebar h2 {
+      	font-family: Georgia;
+      	font-size: 16px;
+      	font-weight: normal;
+      	color: #464646;
+      	margin: 0 0 10px 0;
+      	border-bottom: 3px solid #464646;
+      	text-transform: uppercase;
+      }
+
+      td.sidebar ul {
+      	margin: 0 0 20px 24px;
+      	padding: 0;
+      	font-family: Georgia;
+      	font-size: 12px;
+      	font-weight: normal;
+      	color: #313131;
+      }
+
+      td.sidebar ul a {
+      	font-family: Georgia;
+      	font-size: 12px;
+      	font-weight: normal;
+      	color: #44a0df;
+      }
+
+      td.sidebar p {
+      	font-family: Georgia;
+      	font-size: 12px;
+      	font-weight: normal;
+      	color: #313131;
+      	margin: 0 0 14px 0;
+      	padding: 0;
+      }
+
+      td.sidespace {
+         padding: 20px;
+      }
+
+      table.options {
+      	border-top: 1px solid #9f9862;
+      	border-bottom: 1px solid #9f9862;
+      }
+
+      table.options td {
+      	padding: 16px 22px 16px 22px;
+      }
+
+      td.border {
+      	border-bottom: 1px solid #9f9862;
+      }
+
+      table.options h3 {
+      	font-family: Georgia;
+      	font-size: 16px;
+      	font-weight: normal;
+      	color: #9f9862;
+      	margin: 0 0 4px 0;
+      	padding: 0;
+      }
+
+      table.options p {
+      	font-family: Georgia;
+      	font-size: 13px;
+      	font-weight: normal;
+      	color: #313131;
+      	margin: 0;
+      	padding: 0;
+      }
+
+      table.options p a {
+      	color: #313131;
+      	text-decoration: none;
+      	border: none;
+      	margin: 0;
+      	padding: 0;
+      }
+
+      td.mainbar {
+         padding: 20px;
+      }
+
+      td.mainbar h2 {
+      	font-family: Georgia;
+      	font-size: 20px;
+      	font-weight: bold;
+      	color: #9f9862;
+      	margin: 0 0 10px 0;
+      	padding: 0;
+      }
+
+      td.mainbar h2 a {
+      	font-family: Georgia;
+      	font-size: 20px;
+      	font-weight: bold;
+      	color: #9f9862;
+         text-decoration: none;
+      }
+
+      td.mainbar h3 {
+      	font-family: Verdana;
+      	font-size: 11px;
+      	font-weight: normal;
+      	color: #333333;
+      	text-transform: uppercase;
+      	margin: 0 0 8px 0;
+      	padding: 0;
+      }
+
+      td.mainbar p {
+      	font-family: Georgia;
+      	font-size: 12px;
+      	font-weight: normal;
+      	color: #333333;
+      	margin: 0 0 16px 0;
+      	padding: 0;
+      }
+
+      td.mainbar p.top {
+      	font-family: Verdana;
+      	font-size: 10px;
+      	font-weight: normal;
+      	color: #44a0df;
+      	text-transform: uppercase;
+      	width: 100%;
+      	text-align: right;
+      	margin: 14px 0 4px 0;
+      }
+
+      table.footer {
+      	font-family: Georgia;
+      	font-size: 11px;
+      	font-weight: normal;
+      	color: #999999;
+      	text-align: center;
+      	border: 1px solid #575757;
+      }
+
+      table.footer td {
+      	height: 88px;
+      }
+
+      table.footer span {
+      	color: #ffffff;
+      }
+
+      table.bgBottom {
+         padding: 10px;
+      	background-color: #181818;
+      }
+   </style>
+</head>
+<body>
+<a name="top" id="top"></a>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="center">
+         
+         <table width="579" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="permission">
+                  <p>You're receiving this newsletter because you bought widgets from us.</p>
+                  <p>Having trouble reading this email? <webversion>View it on your browser</webversion>. Not interested anymore? <unsubscribe>Unsubscribe Instantly</unsubscribe>.</p>
+               </td>
+            </tr>
+         </table>
+         
+         <table width="579" border="0" cellspacing="0" cellpadding="0" class="bgTop">
+            <tr>
+               <td align="center">
+                  
+                  <table width="579" height="108" border="0" cellspacing="0" cellpadding="0" class="header">
+                     <tr>
+                        <td><img src="header.gif" width="579" height="108" alt="ABC Widgets" /></td>
+                     </tr>
+                  </table>
+                  
+               </td>
+            </tr>
+         </table>
+         
+         <table width="579" border="0" cellspacing="0" cellpadding="0" class="bg">
+            <tr>
+               <td width="326" align="center" valign="top">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                        <td align="left" class="mainbar">
+                           
+                           <h3>Feature</h3>
+                           <h2><$title link="true" default='Enter title here'$></h2>
+                           <$description default='<p>Enter body content here</p>'$>
+                           
+                           <img src="hr.gif" width="326" height="19">
+                           
+                           <h3>Other stories</h3>
+                           <repeater toc='true'>
+                           <h2><$title link="true" default='Enter title here'$></h2>
+                           <img src="<$imagesrc link='false'$>" width="160" height="151" align="right" hspace="10">
+                           <$description default='<p>Enter body content here</p>'$>
+                           </repeater>
+                           <p class="top"><a href="#top">Back to top</a></p>
+                           <img src="hr.gif" width="326" height="19">
+                        </td>
+                     </tr>
+                  </table>
+                  
+               </td>
+               
+               <td width="254" align="center" valign="top" class="sidebar">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                        <td align="left" class="sidespace">
+
+                           <h2>In this issue</h2>
+                           <ul>
+                           <tableofcontents>
+                             <li><$repeatertitle$></li>
+                           </tableofcontents>
+                           </ul>
+                           
+                           <h2>In short</h2>
+                           <repeater>
+                           <p><strong><$title link="false" default='Enter title here'$></strong></p>
+                           <$description default='<p>Enter copy here</p>'$>
+                           </repeater>
+                           
+                           <table width="100%" height="173" border="0" cellspacing="0" cellpadding="0" class="options">
+                              <tr>
+                                 <td align="center" class="border" valign="top">
+                                    <h3>UNSUBSCRIBE</h3>
+                                    <p><unsubscribe>Click to instantly unsubscribe from this email</unsubscribe></p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td align="center" valign="top">
+                                       <h3>FORWARD</h3>
+                                       <p><forwardtoafriend>Click to forward this email to a friend</forwardtoafriend></p>
+                                 </td>
+                              </tr>
+                           </table>
+                           
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         
+         <table width="579" height="108" border="0" cellspacing="0" cellpadding="0" class="bgBottom">
+            <tr>
+               <td align="center" valign="middle">
+                  
+                  <table width="559" height="88" border="0" cellspacing="0" cellpadding="0" class="footer">
+                     <tr>
+                        <td align="center">abcWidgets and the abcWidgets Logo are registered trademarks of <span>abcWidgets Corp</span>.<br />ABCWidgets Corp - 123 Some Street, City, ST 99999. ph +1 4 1477 89 745</td>
+                     </tr>
+                  </table>
+                  
+               </td>
+            </tr>
+         </table>
+         
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
