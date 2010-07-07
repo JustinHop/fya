@@ -6,16 +6,26 @@
 #require_once( ABSPATH . 'wp-admin/includes/nav-menu.php' );
 function newsletter_posttype() {
     $args = array('label' => __('Newsletters'), 'description' => 'FYA Newsletters', 'hierarchial' => false, 'capability_type' => 'post', 'public' => true, 'show_ui' => true, 'register_meta_box_cb' => newsletter_metabox, 'supports' => array('title',
-    /*'editor',
-    'custom-fields',
-    /*'thumbnail',
+    'editor',
+    //'custom-fields',
+    'thumbnail',
     'excerpt',
-    'revisions',*/
+    /*'revisions',*/
     ));
     register_post_type('newsletter', $args);
     wp_register_style('jquery-ui', get_bloginfo('template_directory') . '/library/css/start/jquery-ui-1.7.2.custom.css');
     wp_enqueue_style('jquery-ui');
 }
+
+function newsletter_options_page_init() {
+	add_submenu_page( 'edit.php?post_type=newsletter', 'Options', 'Newsletter Options', 'manage_options', 'newsletter_opts', 'newsletter_options_page');
+}
+add_action('admin_menu', 'newsletter_options_page_init');
+
+function newsletter_options_page() {
+	echo '<h2>Hello World</h2>';
+}
+
 function newsletter_date_inner_html() {
     global $post;
 ?>

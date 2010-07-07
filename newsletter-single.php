@@ -12,13 +12,17 @@
    <title>FYA Bulletin - <?php the_title(); ?></title>
    <style type="text/css" media="screen">
       body {
-      	background-color: #474333;
+      	background-color: #998877; /* tan */
       	margin: 0;
       	padding: 0;
       }
 
+      a {
+      	  text-decoration: none;
+      }
+
       p a {
-      	color: #44a0df;
+      	color: #005566; /* blue */
       	text-decoration: none;
       }
 
@@ -40,12 +44,12 @@
       }
 
       td.permission a {
-      	color: #9f9862;
+      	color: #005566; /* blue */
       	text-decoration: none;
       }
 
       table.bgTop {
-      	background-color: #181818;
+      	background-color: #005566; /* brown */
       }
 
       table.bg {
@@ -58,13 +62,13 @@
 
       table.header td h1 {
       	font-family: 'Futura', Arial;
-      	font-size: 24px;
-      	font-weight: normal;
-      	color: #9f9862;
+      	font-size: 26px;
+      	font-weight: 900;
+      	color: #998877; /* Blue */
       	display: inline;
       	margin: 0 0 0 6px;
       	padding: 0;
-      	text-transform: uppercase;
+      	/*text-transform: uppercase;*/
       }
 
       table.header td h3 {
@@ -83,14 +87,22 @@
       	border-right: 1px solid #bdbcb8;
       }
 
+      td.sidebar h3 {
+      	font-family: Georgia;
+      	font-size: 11px;
+      	font-weight: normal;
+      	color: #666655; /* olive */
+      	margin: 0 0 10px 0;
+      	border-bottom: 3px solid #998877; /* tan */
+      	text-transform: uppercase;
+      }
       td.sidebar h2 {
       	font-family: Georgia;
       	font-size: 16px;
       	font-weight: normal;
-      	color: #464646;
+      	color: #666655; /* olive */
       	margin: 0 0 10px 0;
-      	border-bottom: 3px solid #464646;
-      	text-transform: uppercase;
+      	/*text-transform: uppercase;*/
       }
 
       td.sidebar ul {
@@ -106,7 +118,7 @@
       	font-family: Georgia;
       	font-size: 12px;
       	font-weight: normal;
-      	color: #44a0df;
+      	color: #005566; /* blue */
       }
 
       td.sidebar p {
@@ -122,6 +134,10 @@
          padding: 20px;
       }
 
+      td.sidespace h2 a {
+      	  color: #881100; /* red */
+      }
+
       table.options {
       	border-top: 1px solid #9f9862;
       	border-bottom: 1px solid #9f9862;
@@ -132,7 +148,7 @@
       }
 
       td.border {
-      	border-bottom: 1px solid #9f9862;
+      	border-bottom: 1px solid #998877; /* tan */
       }
 
       table.options h3 {
@@ -178,7 +194,7 @@
       	font-family: Georgia;
       	font-size: 20px;
       	font-weight: bold;
-      	color: #9f9862;
+      	color: #881100; /* red */
          text-decoration: none;
       }
 
@@ -186,7 +202,8 @@
       	font-family: Verdana;
       	font-size: 11px;
       	font-weight: normal;
-      	color: #333333;
+      	color: #998877; /* tan */
+      	border-bottom: 3px solid #998877; /* tan */
       	text-transform: uppercase;
       	margin: 0 0 8px 0;
       	padding: 0;
@@ -218,7 +235,7 @@
       	font-weight: normal;
       	color: #999999;
       	text-align: center;
-      	border: 1px solid #575757;
+      	/*border: 1px solid #575757;*/
       }
 
       table.footer td {
@@ -231,7 +248,7 @@
 
       table.bgBottom {
          padding: 10px;
-      	background-color: #181818;
+      	background-color: #005566;
       }
    </style>
 
@@ -243,16 +260,17 @@
       <td align="center">
          
          <?php // THIS IS THE HEADER ?>
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
          <table width="579" border="0" cellspacing="0" cellpadding="0">
             <tr>
                <td class="permission">
-                  <p>You're receiving this newsletter because you bought widgets from us.</p>
-                  <p>Not interested anymore? <unsubscribe>Unsubscribe</unsubscribe>. Having trouble viewing this email? <webversion>View it in your browser</webversion>.</p>
+                  <p>You're receiving this newsletter because you signed up.</p>
+                  <p>Not interested anymore? <unsubscribe>Unsubscribe</unsubscribe>. Having trouble viewing this email? <a href="<?php the_permalink(); ?>">View it in your browser</a>.</p>
                </td>
             </tr>
          </table>
          
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
          <table width="579" border="0" cellspacing="0" cellpadding="0" class="bgTop">
             <tr>
@@ -260,7 +278,8 @@
                   
                   <table width="579" height="108" border="0" cellspacing="0" cellpadding="0" class="header">
                      <tr>
-                        <td><img src="<?php bloginfo('template_directory'); ?>/images/header.gif" width="579" height="108" alt="ABC Widgets" /></td>
+                     <td><center><h1>The Alameda County Foster Youth Alliance</h1><br><br>
+                            <h3><?php the_title(); ?></h3></center></td>
                      </tr>
                   </table>
                   
@@ -330,7 +349,7 @@
                         <td align="left" class="sidespace">
 
                            <?php // TABLE OF CONTENTS LOOP ?>
-                           <h2>In this issue</h2>
+                           <h3>In this issue</h3>
                            <ul>
                            <?php if (false) : ?>
                               <li><a href="#">Lorem ipsum dolar sit amet conse</a></li>
@@ -394,7 +413,7 @@
                   
                   <table width="559" height="88" border="0" cellspacing="0" cellpadding="0" class="footer">
                      <tr>
-                        <td align="center">abcWidgets and the abcWidgets Logo are registered trademarks of <span>abcWidgets Corp</span>.<br />ABCWidgets Corp - 123 Some Street, City, ST 99999. ph +1 4 1477 89 745</td>
+                        <td align="center">The lawyers will fill this part in for <span>The Alameda County Foster Youth Alliance</span>.<br />The Alameda County Foster Youth Alliance - 123 Some Street, San Francisco, CA 99999. ph +1 4 1477 89 745</td>
                      </tr>
                   </table>
                   

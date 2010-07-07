@@ -91,7 +91,7 @@
     <?php } ?>
     <?php
     if(function_exists('wp_nav_menu')) {
-		 wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'sf-menu','sort_column' => 'menu_order', 'container_class' => 'main-navigation', 'fallback_cb' => 'display_home' ) ); 
+		 wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'sf-menu','sort_column' => 'menu_order', 'container_class' => 'main-navigation', 'fallback_cb' => 'display_home', 'menu' => 'Primary Menu' ) ); 
 		 wp_nav_menu( array( 'theme_location' => 'sub', 'sort_column' => 'menu_order', 'container_class' => 'sub-navigation', 'fallback_cb' => 'display_none' ) ); 
 	} else {
 		echo '<div class="main-navigation"><ul class="sf-menu"><li><a href="'.get_bloginfo('url').'">Home</a></li>';

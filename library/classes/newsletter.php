@@ -1566,13 +1566,7 @@ function newsletter_parts($passed_menu_id = null, $passed_target = 'main') {
 
 			if ($type == "section") :
 			
-			if ( $target == "side" ) {
-				//echo "\n<h2>$label - $target - $id</h2>\n";
-				echo "\n<h2>$label</h2>\n";
-			}   else{
 				echo "\n<h3>$label</h3>\n";
-			}
-
 			
 			endif;
 			
