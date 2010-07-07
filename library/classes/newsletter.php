@@ -124,6 +124,24 @@ class NewsMenu extends MenusPlus {
         $wpdb->insert($items_table, $data);
         return $this->highest_order();
     }
+    function quick_preload_menu($arr){
+        global $post;
+        global $wpdb;
+        $wpdb->show_errors();
+        $post_id = $_POST['id'];
+        $items_table = $wpdb->prefix . "menusplus";
+        $data = $this->prep_item_post( array( 'wp_id' => $arr['wp_id'],
+                                                'label' => 'Featured',
+                                                'post_type' => 'section',
+                                                'menu_id' => $arr['menu_id'] ) );
+        $data['list_order'] = $this->highest_order($data['menu_id']) + 1;
+        $wpdb->insert($items_table, $data);
+        $data['inserted'] = $wpdb->insert_id;
+        var_dump( $data );
+
+        return $menu_id;
+    }
+
     function quick_new_menu() {
         global $post;
         $title = $_POST['title'];
@@ -138,11 +156,6 @@ class NewsMenu extends MenusPlus {
         $wpdb->show_errors();
         $data_array = array('menu_title' => $title,);
         $wpdb->insert($menus_table, $data_array);
-        
-        /*$this->quickpreload( array('type' => 'section', 
-                                'menu_title' => 'Main Content')
-        );*/
-
         return $wpdb->insert_id;
     }
     function quick_edit_menu() {
@@ -165,6 +178,31 @@ class NewsMenu extends MenusPlus {
         $wpdb->update($menus_table, $data_array, $where);
         exit();
     }
+	function new_menu() {
+		
+		if (!wp_verify_nonce($_POST['nonce'], 'menus_plus_nonce')) 
+			exit();
+		
+		$title = $_POST['title'];
+		$title = 'Newsletter';
+		if (empty($title)) : echo "empty"; exit(); endif;
+		
+		$title = stripslashes($title);
+		
+		global $wpdb;
+		$menus_table = $wpdb->prefix . "menusplus_menus";
+		$wpdb->show_errors();
+		
+		$data_array = array(
+			'menu_title' => $title,
+		);
+		
+		$wpdb->insert($menus_table, $data_array );
+		echo $last_result = $wpdb->insert_id;
+		exit();
+		
+	}
+	
     function add_admin() {
         return true;
     }
@@ -454,10 +492,12 @@ class NewsMenu extends MenusPlus {
 						<td><div align="right"><?php _e("Section Column"); ?></div></td>
 						<td class="widefat">
 							<select class="edit_target">
-								<option value="right" <?php if ($target == "left"): ?> selected="selected" <?php
-            endif; ?> ><?php _e('Right', "menus-plus"); ?></option>
-								<option value="left" <?php if ($target == "right"): ?> selected="selected" <?php
-            endif; ?> ><?php _e('Left', "menus-plus"); ?></option>
+								<option value="main"  <?php 
+								if ($target == "main"): ?> selected="selected" <?php endif; ?> ><?php _e('Main Body Full', "menus-plus"); ?></option>
+								<option value="mainshort" <?php 
+								if ($target == "mainshort"): ?> selected="selected" <?php endif; ?>  ><?php _e('Main Body Short', "menus-plus"); ?></option>
+								<option value="side" <?php 
+								if ($target == "side"): ?> selected="selected" <?php endif; ?> ><?php _e('Side Column', "menus-plus"); ?></option>
 							</select>
 						</td>
 					</tr>

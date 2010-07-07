@@ -76,7 +76,8 @@ function newsletter_admin_header_new() {
     if (get_post_type() == 'newsletter') {
         echo '<!-- THIS IS newsletter_admin_header_new() -->';
         echo '<!-- ' . $post->ID . ' -->';
-        update_post_meta($post->ID, 'menu_id', $newsmenu->quick_new_menu());
+        $quick = update_post_meta($post->ID, 'menu_id', $newsmenu->quick_new_menu());
+        $newsmenu->quick_preload_menu( array( 'menu_id' => $quick, 'wp_id' => $post->ID ) );
     }
 }
 function newsletter_save_postdata($post_id) {
@@ -94,7 +95,7 @@ function newsletter_save_postdata($post_id) {
 function newsletter_admin_head() {
     wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"), false);
     wp_register_script('jquery-ui', ("http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"), array('jquery'));
-    wp_register_script('newsletter-admin', get_bloginfo('template_directory') . '/library/js/newsletter-admin.js', array('jquery-ui'));
+    //wp_register_script('newsletter-admin', get_bloginfo('template_directory') . '/library/js/newsletter-edit.js', array('jquery-ui'));
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery-ui');
     // Metaboxes
