@@ -11,10 +11,13 @@ function init_multiplecontent() {
   #add_meta_box('multi_content',__('Multiple content blocks','trendwerk'),'add_multiplecontent_box','page','normal','high');
   #add_meta_box('multi_content',__('Multiple content blocks','trendwerk'),'add_multiplecontent_box','post','normal','high');
   add_meta_box('multi_content',__('Partner Information','trendwerk'),'add_multiplecontent_box','partner','normal','high');
-  add_meta_box('multi_content',__('Newsletter Introduction','trendwerk'),'add_multiplecontent_box','newsletter','normal','high');
+    add_action('admin_head','multiplecontent_css');
+
+add_action('save_post', 'save_multiplecontent_box');
+add_action('admin_init','init_multiplecontent');
+
 }
 
-add_action('admin_init','init_multiplecontent');
 
 
 function multiplecontent_css() {
@@ -28,7 +31,6 @@ function multiplecontent_css() {
   ';
 }
 
-add_action('admin_head','multiplecontent_css');
 
 
 function add_multiplecontent_box() {
@@ -55,12 +57,6 @@ function add_multiplecontent_box() {
      else {
       if($post->post_type == 'partner') {
         $fileToRead .= 'partner-single.php';
-      } else {
-        $fileToRead .= 'page.php';
-      }
-     else {
-      if($post->post_type == 'newsletter') {
-        $fileToRead .= 'newsletter-single.php';
       } else {
         $fileToRead .= 'page.php';
       }
@@ -216,9 +212,6 @@ function save_multiplecontent_box($id) {
   }
 
 }
-
-add_action('save_post', 'save_multiplecontent_box');
-
 
 //front end
 

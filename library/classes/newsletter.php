@@ -1485,4 +1485,174 @@ function newsinit() {
     $newsmenu = new NewsMenu();
 }
 add_action('init', 'newsinit');
+
+/*
+function newletter_parts($passed_menu_id = null, $passed_class = null) {
+
+	global $wpdb;
+	$items_table = $wpdb->prefix . "menusplus";
+	$menus_table = $wpdb->prefix . "menusplus_menus";
+	$wpdb->show_errors();
+	
+	// Returns the best possible menu_id
+
+	
+	if (!$passed_menu_id) :
+		$item = $wpdb->get_row("SELECT * FROM $menus_table ORDER BY id ASC", ARRAY_A );
+		$menu_id = $item['id'];
+	else :
+		$menu_id = $passed_menu_id;
+	endif;
+	
+	$items = $wpdb->get_results("SELECT * FROM $items_table WHERE menu_id = $menu_id ORDER BY list_order ASC", ARRAY_A);
+	$last_class = 'main';
+	
+	if (count($items) > 0) :
+		foreach ($items as $item) :
+
+			$id = $item['id'];
+			$wp_id = $item['wp_id'];
+			$list_order = $item['list_order'];
+			$type = $item['type'];
+
+			$class = $item['class'];
+            if ( empty( $item['class'] ) {
+            	$class = $last_class;
+            }else{
+            	$last_class = $class;
+            }
+			$url = $item['url'];
+			$label = $item['label'];
+			$children = $item['children'];
+			$children_order = $item['children_order'];
+			$children_order_dir = $item['children_order_dir'];
+			$target = $item['target'];
+			$depth = $item['depth'];
+			$title = $item['title'];
+			
+			$siteurl = get_bloginfo('siteurl');
+			
+	        if ( is_string($passed_class) ) {
+	        	if ( $passed_class == $class ) {
+	        		next;
+	        	};
+	        }
+			if ($type == "section") :
+			
+			if ( $target == "side" ) {
+				echo "\n<h2>$label</h2>\n";
+			}   else{
+				echo "\n<h3>$label</h3>\n";
+			}
+
+			
+			endif;
+			
+			if ($type == "page") :
+				
+					$array = array(
+						"title_li" => NULL,
+						"include" => $wp_id,
+						"sort_column" => $children_order,
+						"sort_order" => $children_order_dir,
+						"depth" => 1,
+						"echo" => 0
+					);
+					
+					$top = wp_list_pages($array);
+					if ($children == "true" && get_pages("child_of=" . $wp_id)) {
+						echo $top = str_replace("</li>", "", $top);
+						$array = array(
+							"title_li" => NULL,
+							"child_of" => $wp_id,
+							"sort_column" => $children_order,
+							"sort_order" => $children_order_dir,
+							"depth" => $depth,
+							"echo" => 0
+						);
+						echo "<ul>";
+						echo $children = wp_list_pages($array);
+						echo "</ul></li>";
+					} else {
+						echo $top;
+					}
+					
+			endif;
+			
+			if ($type == "post") :
+											
+				global $wpdb;
+				global $post;
+				$menus_table = $wpdb->prefix . "menusplus_menus";
+				$wpdb->show_errors();
+
+				//$posts = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE ID = '$wp_id'", ARRAY_A );
+				$post = get_post( $wp_id );
+
+				if ($post) :
+						echo '<h2 class="' . $class . '">';
+						echo '<a href="' . get_permalink($wp_id) . '" title="' . $title . '">' . $post['post_title'] . '</a>'; 
+						echo '</h2>';
+						echo apply_filters('the_content', $post['content']);
+				endif;
+							
+			endif;
+			
+			if ($type == "cat") :
+			
+				// Identify the current category if we're not on an archive page
+				
+				if (is_single()) :
+					$currCat = get_the_category();
+					$currCatID = $currCat[0]->cat_ID;
+				else : 
+					$currCatID = NULL;
+				endif;
+				
+				// Deal with the custom attribute title
+												
+				if ($children == "true") :
+					$children = get_categories("child_of=$wp_id&orderby=$children_order&hide_empty=0");
+					foreach ($children as $child) :
+						$wp_id .= ", " . $child->cat_ID;
+					endforeach;
+				endif;
+				
+				$array = array(
+					"title_li" => NULL,
+					"hide_empty" => 0,
+					"include" => $wp_id,
+					"current_category" => $currCatID,
+					"order" => $childre_order_dir,
+					"orderby" => $children_order,
+					"depth" => $depth					
+				);
+				
+				wp_list_categories($array);
+			
+			endif;
+			
+			if ($type == "url") :
+			
+				echo "<li class=\"$class\">";
+				echo "<a href=\"$url\" target=\"$target\" title=\"$title\">$label</a>";
+				echo "</li>";
+		
+			endif;
+			
+			if ($type == "hybrid") :
+			
+				$menu = $wpdb->get_row("SELECT menu_title FROM $menus_table WHERE id = $wp_id");
+				echo '<li class="' . $class . '"><a href="' . $url . '" title="' . $title . '">'.$menu->menu_title.'</a>';
+				echo "<ul class='children'>";
+					menusplus($wp_id);
+				echo "</ul></li>";
+			
+			endif;
+			
+		endforeach;
+    endif;
+
+}
+*/
 ?>
