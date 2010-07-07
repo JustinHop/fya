@@ -13,7 +13,7 @@ function newsletter_posttype() {
     'revisions',*/
     ));
     register_post_type('newsletter', $args);
-    wp_register_style('jquery-ui', get_bloginfo('template_directory') . '/lib/css/start/jquery-ui-1.7.2.custom.css');
+    wp_register_style('jquery-ui', get_bloginfo('template_directory') . '/library/css/start/jquery-ui-1.7.2.custom.css');
     wp_enqueue_style('jquery-ui');
 }
 function newsletter_date_inner_html() {
@@ -82,12 +82,13 @@ function newsletter_admin_header_new() {
 function newsletter_save_postdata($post_id) {
     global $newsmenu;
     if (!wp_verify_nonce($_POST['fya_partner_featured_nonce'], get_bloginfo('theme_directory'))) {
-        return $post_id;
+        echo '<!-- ERROR ->';
+        //return $post_id;
     }
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
+    //if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
     if ($_REQUEST['menu_id']) {
         update_post_meta($post_id, 'menu_id', true);
-        $newsmenu->quick_edit_menu($_REQUEST['menu_id'], $_REQUEST['title']);
+        //$newsmenu->quick_edit_menu($_REQUEST['menu_id'], $_REQUEST['title']);
     }
 }
 function newsletter_admin_head() {
@@ -107,4 +108,5 @@ function newsletter_admin_head() {
     // Thickbox
     add_thickbox();
 }
+
 ?>

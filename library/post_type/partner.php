@@ -179,7 +179,7 @@ function partner_metabox() {
     //add_meta_box( 'partner_info', __('Partners Info'),
     //   'partner_inner_html',  );*/
 };
-function partner_post_type_add_template() {
+function post_type_add_template() {
     $post_type = get_query_var('post_type');
     if (!empty($post_type)) {
         if (is_single()) {

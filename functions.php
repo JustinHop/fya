@@ -27,7 +27,7 @@ add_action('init', 'partner_posttype');
 add_action('save_post', 'partner_save_postdata');
 add_action('admin_head-post.php', 'partner_head_css');
 add_action('admin_head-post-edit.php', 'partner_head_css');
-add_action('template_redirect', 'partner_post_type_add_template');
+add_action('template_redirect', 'post_type_add_template');
 require_once (HYBRID_FYA . '/library/functions/partner-multicontent.php');
 /*
 * Add actions

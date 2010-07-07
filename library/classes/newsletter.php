@@ -138,6 +138,11 @@ class NewsMenu extends MenusPlus {
         $wpdb->show_errors();
         $data_array = array('menu_title' => $title,);
         $wpdb->insert($menus_table, $data_array);
+        
+        /*$this->quickpreload( array('type' => 'section', 
+                                'menu_title' => 'Main Content')
+        );*/
+
         return $wpdb->insert_id;
     }
     function quick_edit_menu() {
@@ -353,8 +358,9 @@ class NewsMenu extends MenusPlus {
 						<td><div align="right"><?php _e("Section Column"); ?></div></td>
 						<td >
 							<select class="edit_target widefat">
-								<option value="right"  selected="selected" ><?php _e('Right', "menus-plus"); ?></option>
-								<option value="left" ><?php _e('Left', "menus-plus"); ?></option>
+								<option value="main"  selected="selected" ><?php _e('Main Body Full', "menus-plus"); ?></option>
+								<option value="mainshort" ><?php _e('Main Body Short', "menus-plus"); ?></option>
+								<option value="side" ><?php _e('Side Column', "menus-plus"); ?></option>
 							</select>
 						</td>
 					</tr>
@@ -786,10 +792,12 @@ class NewsMenu extends MenusPlus {
 	<?php
     }
     function list_menu() {
+    	global $post;
         global $wpdb;
         $menu_id = $_POST['menu_id'];
         $items_table = $wpdb->prefix . "menusplus";
         $menus_table = $wpdb->prefix . "menusplus_menus";
+        $wp_id = $post->ID;
         $wpdb->show_errors();
         $items = $wpdb->get_results("SELECT * FROM $items_table WHERE menu_id = $menu_id ORDER BY list_order ASC", ARRAY_A);
         if (count($items) > 0):
