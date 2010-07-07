@@ -82,7 +82,7 @@ function newsletter_admin_header_new() {
 function newsletter_save_postdata($post_id) {
     global $newsmenu;
     if (!wp_verify_nonce($_POST['fya_partner_featured_nonce'], get_bloginfo('theme_directory'))) {
-        echo '<!-- ERROR ->';
+        //echo '<!-- ERROR ->';
         //return $post_id;
     }
     //if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
